@@ -8,10 +8,11 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-size: 14px;
-    font-family: -apple-system, "Source Code Pro", sans-serif ;
-    background-color: ${(props) => props.theme.colors.background};
-    color: ${(props) => props.theme.colors.text.primary};
+    font-size: ${({ theme }) => theme.size.text.base};
+    font-family: apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    background-color: ${({ theme }) => theme.colors.background};
+    color: ${({ theme }) => theme.colors.text.primary};
   }
 
   a {
