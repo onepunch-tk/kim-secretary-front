@@ -1,15 +1,16 @@
 import darkTheme from "@styles/theme.ts";
 import GlobalStyles from "@styles/GlobalStyles.tsx";
 import { ThemeProvider } from "styled-components";
-import { Outlet } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { router } from "@routes/router.tsx";
 
 function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <GlobalStyles />
       <HelmetProvider>
-        <Outlet />
+        <RouterProvider router={router} />
       </HelmetProvider>
     </ThemeProvider>
   );
