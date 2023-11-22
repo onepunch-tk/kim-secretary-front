@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { GET_USER_QUERY } from "@graphql/queries.ts";
-import { useBearStore } from "@models/store.ts";
+import { useBearStore } from "@utils/store/user.ts";
 
 export const useGetUser = (userId: string) => {
   const { loading, error, data } = useQuery<number>(GET_USER_QUERY, {

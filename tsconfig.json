@@ -24,11 +24,12 @@
       "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
       "@graphql/*": ["./src/graphql/*"],
-      "@models/*": ["./src/models/*"],
-      "@presenters/*": ["./src/presenters/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@api/*": ["./src/api/*"],
       "@routes/*": ["./src/routes/*"],
       "@styles/*": ["./src/styles/*"],
-      "@views/*": ["./src/views/*"]
+      "@views/*": ["./src/views/*"],
+      "@types/*": ["./src/types/*"]
     }
   },
   "include": ["src"],
