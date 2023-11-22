@@ -12,7 +12,7 @@ export default defineConfig({
       "@graphql": path.resolve(__dirname, "./src/graphql"),
       "@utils": path.resolve(__dirname, "./src/utils"),
       "@api": path.resolve(__dirname, "./src/api"),
-      "@routes": path.resolve(__dirname, "./src/routes"),
+      "@route": path.resolve(__dirname, "./src/route"),
       "@styles": path.resolve(__dirname, "./src/styles"),
       "@views": path.resolve(__dirname, "./src/views"),
       "@types": path.resolve(__dirname, "./src/types"),

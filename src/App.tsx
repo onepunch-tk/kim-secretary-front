@@ -3,7 +3,7 @@ import GlobalStyles from "@styles/GlobalStyles.tsx";
 import { ThemeProvider } from "styled-components";
 import { RouterProvider } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import { router } from "@routes/router.tsx";
+import { router } from "@/route/router.tsx";
 
 function App() {
   return (

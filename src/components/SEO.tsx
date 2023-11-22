@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { memo } from "react";
 
 interface SEOProps {
   title: string;
@@ -7,7 +8,12 @@ interface SEOProps {
   type: string;
 }
 
-export default function SEO({ title, description, name, type }: SEOProps) {
+export const SEO = memo(function SEO({
+  title,
+  description,
+  name,
+  type,
+}: SEOProps) {
   return (
     <Helmet>
       {/* Standard metadata tags */}
@@ -27,4 +33,4 @@ export default function SEO({ title, description, name, type }: SEOProps) {
       {/* End Twitter tags */}
     </Helmet>
   );
-}
+});
