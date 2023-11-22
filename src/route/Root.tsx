@@ -8,7 +8,14 @@ const Test = styled(flexCenterCol)``;
 const Test1 = styled(flexBox)`
   width: 200px;
   height: 200px;
-  background-color: chocolate;
+  background-color: lightblue; // 기본 스타일
+
+  @media ${({ theme }) => theme.responsive.tablet} {
+    background-color: orangered;
+  }
+  @media ${({ theme }) => theme.responsive.phone} {
+    background-color: pink;
+  }
 `;
 
 export function Root() {
