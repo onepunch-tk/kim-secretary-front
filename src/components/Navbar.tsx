@@ -1,8 +1,10 @@
 import styled from "styled-components";
-import { flexBox, flexCenterCol } from "@styles/common/flex-box.ts";
-import { Shop } from "@components/ui/navbar/Shop.tsx";
+import { flexCenter, flexCenterCol } from "@styles/common/flex-box.ts";
+import { Profile } from "@components/ui/navbar/Profile.tsx";
+import { media } from "@styles/common/helper.ts";
+import { Fragment, useState } from "react";
 
-const NavbarWrapper = styled(flexCenterCol)`
+const NavbarWrapper = styled(flexCenterCol)<{ $barVisible: boolean }>`
   position: fixed;
   left: 0;
   top: 0;
@@ -10,30 +12,51 @@ const NavbarWrapper = styled(flexCenterCol)`
   width: 240px;
   height: 100vh;
   justify-content: space-between;
-`;
-const ProfileWrapper = styled(flexCenterCol)`
-  width: 100%;
-  padding: 12px;
+  background-color: ${({ theme }) => theme.colors.section.main};
+  overflow-x: hidden;
+  ${media.tablet`
+  left:${({ $barVisible }: { $barVisible: boolean }) =>
+    $barVisible ? "0" : "-240px"};
+    `}
+  transition:left 300ms ease-in-out;
 `;
 
-const OwnerWrapper = styled(flexBox)`
-  width: 100%;
-  justify-content: space-between;
-  margin-top: 20px;
-  color: ${({ theme }) => theme.colors.text.primary};
-  font-size: ${({ theme }) => theme.size.text.sm};
+const NavbarVisibleBtn = styled(flexCenter)<{ $barVisible: boolean }>`
+  visibility: hidden;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  left: ${(props) => (props.$barVisible ? "100px" : "20px")};
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  padding: 5px;
+  color: ${({ theme }) => theme.colors.shadow};
+  background-color: ${({ theme }) => theme.colors.accent.main};
+  box-shadow: 0.7px 0.5px 4px ${({ theme }) => theme.colors.shadow};
+  transition: left 300ms ease-in-out;
+  ${media.tablet`visibility:visible`}
 `;
+
+const dummyProfileData = {
+  shopName: "티케이 헤어",
+  ownerName: "01062872629",
+  alarmCount: 19,
+};
 
 export function Navbar() {
+  const [visible, setVisible] = useState<boolean>(false);
   return (
-    <NavbarWrapper>
-      <ProfileWrapper>
-        <Shop shopName="티케이 헤어" />
-        <OwnerWrapper>
-          <span>점주</span>
-          <span>01062872629</span>
-        </OwnerWrapper>
-      </ProfileWrapper>
-    </NavbarWrapper>
+    <Fragment>
+      <NavbarWrapper $barVisible={visible}>
+        <Profile {...dummyProfileData} />
+      </NavbarWrapper>
+      <NavbarVisibleBtn
+        $barVisible={visible}
+        onClick={() => setVisible((prev) => !prev)}
+      >
+        {visible ? "←" : "→"}
+      </NavbarVisibleBtn>
+    </Fragment>
   );
 }
