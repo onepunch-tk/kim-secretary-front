@@ -21,8 +21,8 @@ type Media = {
 };
 
 // sizes 객체를 순회하며 각 디바이스 사이즈에 대응하는 미디어 쿼리 함수를 생성합니다.
-export const media: Media = Object.keys(sizes).reduce(
-  (acc: Partial<Media>, label: string) => {
+export const media: Media = Object.keys(sizes).reduce<Partial<Media>>(
+  (acc, label) => {
     // 미디어 쿼리 함수를 정의합니다. 이 함수는 템플릿 문자열과 임의의 수의 인자들을 받아 CSS 규칙을 생성합니다.
     acc[label as keyof Sizes] = (
       literals: TemplateStringsArray,
@@ -40,12 +40,41 @@ export const media: Media = Object.keys(sizes).reduce(
   {}
 ) as Media;
 
-export const test = (
-  px: number,
-  literals: TemplateStringsArray,
-  ...placeholders: any[]
-) => css`
-  @media (max-width: ${px / 16}em) {
-    ${css(literals, ...placeholders)}
-  }
-`;
+interface Timing {
+  [key: string]: string;
+}
+
+const timing: Timing = {
+  ease: "ease",
+  easeIn: "ease-in",
+  easeOut: "ease-out",
+  easeInOut: "ease-in-out",
+  linear: "linear",
+  stepStart: "step-start",
+  stepEnd: "step-end",
+};
+
+type Transition = {
+  [key in keyof Timing]: ({
+    property,
+    duration,
+  }: {
+    property?: string;
+    duration?: number;
+  }) => CSSProp;
+};
+
+export const transition: Transition = Object.keys(timing).reduce<
+  Partial<Transition>
+>((acc, key) => {
+  // 여기서 key는 keyof Timing 타입입니다.
+  const timingLabel = key as keyof Timing;
+
+  // 각 키에 대해 CSSProp을 반환하는 함수를 할당합니다.
+  acc[timingLabel] = ({ property, duration }) => css`
+    transition: ${property ? property : "all"} ${duration ? duration : 300}ms
+      ${timing[timingLabel]};
+  `;
+
+  return acc;
+}, {} as Partial<Transition>) as Transition;

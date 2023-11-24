@@ -3,6 +3,7 @@ import { flexCenter, flexCenterCol } from "@styles/common/flex-box.ts";
 import { Profile } from "@components/ui/navbar/Profile.tsx";
 import { media } from "@styles/common/helper.ts";
 import { Fragment, useState } from "react";
+import { Menu } from "@components/ui/navbar/Menu.tsx";
 
 const NavbarWrapper = styled(flexCenterCol)<{ $barVisible: boolean }>`
   position: fixed;
@@ -46,10 +47,12 @@ const dummyProfileData = {
 
 export function Navbar() {
   const [visible, setVisible] = useState<boolean>(false);
+
   return (
     <Fragment>
       <NavbarWrapper $barVisible={visible}>
         <Profile {...dummyProfileData} />
+        <Menu />
       </NavbarWrapper>
       <NavbarVisibleBtn
         $barVisible={visible}
