@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { flexCenter, flexCenterCol } from "@styles/common/flex-box.ts";
-import { faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const AdsWrapper = styled(flexCenter)`
@@ -34,7 +34,7 @@ export function Ads() {
   return (
     <AdsWrapper>
       <IconWrapper>
-        <FontAwesomeIcon icon={faCartArrowDown} size="lg" />
+        <FontAwesomeIcon icon={faShoppingBasket} size="lg" />
       </IconWrapper>
       <ContentWrapper>
         <h2>김비서 스토어</h2>
