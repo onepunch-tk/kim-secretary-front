@@ -4,6 +4,11 @@ import { Profile } from "@components/ui/navbar/Profile.tsx";
 import { media } from "@styles/common/helper.ts";
 import { Fragment, useState } from "react";
 import { Menu } from "@components/ui/navbar/Menu.tsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 const NavbarWrapper = styled(flexCenterCol)<{ $barVisible: boolean }>`
   position: fixed;
@@ -27,7 +32,7 @@ const NavbarVisibleBtn = styled(flexCenter)<{ $barVisible: boolean }>`
   cursor: pointer;
   position: fixed;
   top: 20px;
-  left: ${(props) => (props.$barVisible ? "100px" : "20px")};
+  left: ${(props) => (props.$barVisible ? "245px" : "20px")};
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -58,7 +63,7 @@ export function Navbar() {
         $barVisible={visible}
         onClick={() => setVisible((prev) => !prev)}
       >
-        {visible ? "←" : "→"}
+        <FontAwesomeIcon icon={visible ? faChevronLeft : faChevronRight} />
       </NavbarVisibleBtn>
     </Fragment>
   );

@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { flexCenter } from "@styles/common/flex-box.ts";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
 const ShopWrapper = styled(flexCenter)`
   width: 100%;
@@ -37,7 +39,7 @@ export function Shop({ shopName }: ShopProps) {
         <ShopName>{shopName}</ShopName>
       </ShopNameLink>
       <SettingBtn onClick={() => setActive((prev) => !prev)}>
-        {active ? "↑" : "↓"}
+        <FontAwesomeIcon icon={active ? faChevronUp : faChevronDown} />
       </SettingBtn>
     </ShopWrapper>
   );
