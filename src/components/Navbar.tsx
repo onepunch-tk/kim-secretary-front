@@ -9,6 +9,7 @@ import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import { Ads } from "@components/ui/navbar/Ads.tsx";
 
 const NavbarWrapper = styled(flexCenterCol)<{ $barVisible: boolean }>`
   position: fixed;
@@ -58,6 +59,7 @@ export function Navbar() {
       <NavbarWrapper $barVisible={visible}>
         <Profile {...dummyProfileData} />
         <Menu />
+        <Ads />
       </NavbarWrapper>
       <NavbarVisibleBtn
         $barVisible={visible}

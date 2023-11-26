@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const MessageWrapper = styled(flexCenter)`
   width: 100%;
   justify-content: start;
-  margin-top: 20px;
+  margin-top: 10px;
   color: ${({ theme }) => theme.colors.text.primary};
   font-size: ${({ theme }) => theme.size.text.sm};
 `;

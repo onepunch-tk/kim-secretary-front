@@ -26,7 +26,13 @@ const MainMenuWrapper = styled(flexBox)<{ $isSelected: boolean }>`
   margin-bottom: 10px;
   background-color: ${({ $isSelected, theme }) =>
     $isSelected ? theme.colors.section.secondary : "transparent"};
-  ${transition.easeInOut({ property: "background-color" })};
+  ${transition.easeInOut({ property: ["background-color"] })};
+  div {
+    span {
+      margin-left: 10px;
+      font-weight: 600;
+    }
+  }
   &:hover {
     background-color: ${({ theme }) => theme.colors.section.secondary};
   }
@@ -45,11 +51,19 @@ const SubMenu = styled.span<{ $isSelected: boolean }>`
   margin-bottom: 5px;
   padding: 10px 10px;
   font-size: ${({ theme }) => theme.size.text.sm};
+  font-weight: 600;
   background-color: ${({ $isSelected, theme }) =>
     $isSelected ? theme.colors.accent.main : "transparent"};
-  ${transition.easeInOut({ property: "background-color" })};
+  color: ${(props) =>
+    props.$isSelected
+      ? props.theme.colors.shadow
+      : props.theme.colors.text.primary};
+  ${transition.easeInOut({
+    property: ["color", "background-color"],
+  })};
   &:hover {
     background-color: ${({ theme }) => theme.colors.accent.main};
+    color: ${({ theme }) => theme.colors.shadow};
   }
 `;
 
@@ -65,7 +79,10 @@ export function MenuList() {
           onClick={() => selectedMainMenu(menu.menuName)}
         >
           <MainMenuWrapper $isSelected={mainMenu === menu.menuName}>
-            <span>{menu.menuName}</span>
+            <div>
+              <FontAwesomeIcon icon={menu.icon} />
+              <span>{menu.menuName}</span>
+            </div>
             <FontAwesomeIcon
               icon={mainMenu === menu.menuName ? faChevronDown : faChevronRight}
             />

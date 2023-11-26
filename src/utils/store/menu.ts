@@ -1,4 +1,14 @@
 import { create } from "zustand";
+import {
+  faBell,
+  faCalendarCheck,
+  faCircleQuestion,
+  faSliders,
+  faStore,
+  faUser,
+  faWonSign,
+  IconDefinition,
+} from "@fortawesome/free-solid-svg-icons";
 
 export enum MAIN_MENU_NAME {
   HOME = "홈",
@@ -36,6 +46,7 @@ export enum SUB_MENU_NAME {
 }
 export interface Menu {
   menuName: MAIN_MENU_NAME;
+  icon: IconDefinition;
   subMenu: {
     menuName: SUB_MENU_NAME;
     url: string;
@@ -45,6 +56,7 @@ export interface Menu {
 export const menuList: Menu[] = [
   {
     menuName: MAIN_MENU_NAME.HOME,
+    icon: faCalendarCheck,
     subMenu: [
       { menuName: SUB_MENU_NAME.HOME_CALENDAR, url: "" },
       { menuName: SUB_MENU_NAME.HOME_TODAY_SALE, url: "" },
@@ -52,6 +64,7 @@ export const menuList: Menu[] = [
   },
   {
     menuName: MAIN_MENU_NAME.SALE,
+    icon: faWonSign,
     subMenu: [
       { menuName: SUB_MENU_NAME.SALE_HOME, url: "" },
       { menuName: SUB_MENU_NAME.SALE_MY_SHOP, url: "" },
@@ -61,6 +74,7 @@ export const menuList: Menu[] = [
   },
   {
     menuName: MAIN_MENU_NAME.CUSTOMER,
+    icon: faUser,
     subMenu: [
       { menuName: SUB_MENU_NAME.CUSTOMER_HOME, url: "" },
       { menuName: SUB_MENU_NAME.CUSTOMER_POINT, url: "" },
@@ -68,6 +82,7 @@ export const menuList: Menu[] = [
   },
   {
     menuName: MAIN_MENU_NAME.SMS,
+    icon: faBell,
     subMenu: [
       { menuName: SUB_MENU_NAME.SMS_SEND, url: "" },
       { menuName: SUB_MENU_NAME.SMS_KAKAO, url: "" },
@@ -77,6 +92,7 @@ export const menuList: Menu[] = [
   },
   {
     menuName: MAIN_MENU_NAME.MY_SHOP,
+    icon: faStore,
     subMenu: [
       { menuName: SUB_MENU_NAME.MY_SHOP_COSMETIC, url: "" },
       { menuName: SUB_MENU_NAME.MY_SHOP_PRODUCT, url: "" },
@@ -86,6 +102,7 @@ export const menuList: Menu[] = [
   },
   {
     menuName: MAIN_MENU_NAME.SETTING,
+    icon: faSliders,
     subMenu: [
       { menuName: SUB_MENU_NAME.SETTING_SHOP, url: "" },
       { menuName: SUB_MENU_NAME.SETTING_NAVER, url: "" },
@@ -94,6 +111,7 @@ export const menuList: Menu[] = [
   },
   {
     menuName: MAIN_MENU_NAME.CS,
+    icon: faCircleQuestion,
     subMenu: [
       { menuName: SUB_MENU_NAME.CS_NOTICE, url: "" },
       { menuName: SUB_MENU_NAME.CS_EVENT, url: "" },

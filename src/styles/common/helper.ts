@@ -59,7 +59,7 @@ type Transition = {
     property,
     duration,
   }: {
-    property?: string;
+    property?: string[];
     duration?: number;
   }) => CSSProp;
 };
@@ -72,8 +72,8 @@ export const transition: Transition = Object.keys(timing).reduce<
 
   // 각 키에 대해 CSSProp을 반환하는 함수를 할당합니다.
   acc[timingLabel] = ({ property, duration }) => css`
-    transition: ${property ? property : "all"} ${duration ? duration : 300}ms
-      ${timing[timingLabel]};
+    transition: ${property ? property.join(",") : "all"}
+      ${duration ? duration : 300}ms ${timing[timingLabel]};
   `;
 
   return acc;
