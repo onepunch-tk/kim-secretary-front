@@ -1,8 +1,8 @@
 import { SEO } from "@components/SEO.tsx";
-import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import { flexCenterCol } from "@styles/common/flex-box.ts";
 import { Navbar } from "@components/Navbar.tsx";
+import { Outlet } from "react-router-dom";
 
 const MainWrapper = styled(flexCenterCol)``;
 
