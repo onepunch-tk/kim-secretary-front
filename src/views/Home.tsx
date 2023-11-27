@@ -1,4 +1,4 @@
-import { useCalendar } from "@utils/store/calendar.ts";
+import { useCalendar } from "@/zustand/stores/useCalendar.ts";
 import { Fragment } from "react";
 
 export function Home() {

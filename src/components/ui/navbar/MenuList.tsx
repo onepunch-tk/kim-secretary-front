@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { flexBox, flexCenterCol } from "@styles/common/flex-box.ts";
-import { menuList, useMenuStore } from "@utils/store/menu.ts";
+import { menuList, useMenuStore } from "@/zustand/stores/menu.ts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronDown,
