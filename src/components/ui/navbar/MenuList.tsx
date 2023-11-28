@@ -1,107 +1,57 @@
-import styled from "styled-components";
-import { flexBox, flexCenterCol } from "@styles/common/flex-box.ts";
 import { menuList, useMenuStore } from "@/zustand/stores/menu.ts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronDown,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-import { transition } from "@styles/common/helper.ts";
-
-const List = styled(flexCenterCol)`
-  width: 100%;
-`;
-
-const MenuWrapper = styled(flexCenterCol)`
-  width: 100%;
-  cursor: pointer;
-`;
-
-const MainMenuWrapper = styled(flexBox)<{ $isSelected: boolean }>`
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  background-color: ${({ $isSelected, theme }) =>
-    $isSelected ? theme.colors.section.secondary : "transparent"};
-  ${transition.easeInOut({ property: ["background-color"] })};
-  div {
-    span {
-      margin-left: 10px;
-      font-weight: 600;
-    }
-  }
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.section.secondary};
-  }
-`;
-
-const SubMenuWrapper = styled(flexCenterCol)`
-  align-items: start;
-  width: 100%;
-  padding-left: 10px;
-  row-gap: 5px;
-`;
-const SubMenu = styled.span<{ $isSelected: boolean }>`
-  display: block;
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 5px;
-  padding: 10px 10px;
-  font-size: ${({ theme }) => theme.size.text.sm};
-  font-weight: 600;
-  background-color: ${({ $isSelected, theme }) =>
-    $isSelected ? theme.colors.accent.main : "transparent"};
-  color: ${(props) =>
-    props.$isSelected
-      ? props.theme.colors.shadow
-      : props.theme.colors.text.primary};
-  ${transition.easeInOut({
-    property: ["color", "background-color"],
-  })};
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.accent.main};
-    color: ${({ theme }) => theme.colors.shadow};
-  }
-`;
+import { cls } from "@utils/helper.ts";
 
 export function MenuList() {
   const { mainMenu, subMenu, selectedMainMenu, selectedSubMenu } =
     useMenuStore();
   return (
-    <List as="ul">
+    <ul id="menu-list">
       {menuList.map((menu, index) => (
-        <MenuWrapper
-          as="li"
+        <li
+          className="menu-item cursor-pointer"
           key={index}
           onClick={() => selectedMainMenu(menu.menuName)}
         >
-          <MainMenuWrapper $isSelected={mainMenu === menu.menuName}>
+          <div
+            className={cls(
+              "main-menu flex items-center justify-between rounded-xl border-txt-primary px-3.5 py-2.5 transition-[background-color] duration-300 hover:bg-section-secondary",
+              { "bg-section-secondary": mainMenu === menu.menuName }
+            )}
+          >
             <div>
               <FontAwesomeIcon icon={menu.icon} />
-              <span>{menu.menuName}</span>
+              <span className="ml-2.5 font-semibold">{menu.menuName}</span>
             </div>
             <FontAwesomeIcon
               icon={mainMenu === menu.menuName ? faChevronDown : faChevronRight}
             />
-          </MainMenuWrapper>
+          </div>
           {mainMenu === menu.menuName && (
-            <SubMenuWrapper>
+            <div className="sub-menu-container mt-1.5 flex flex-col pl-3">
               {menu.subMenu.map((menu, index) => (
-                <SubMenu
-                  $isSelected={subMenu === menu.menuName}
+                <span
+                  className={cls(
+                    "sub-menu mb-1 rounded-xl p-2.5 text-sm transition-[background-color,color] hover:bg-accent hover:text-black",
+                    {
+                      "bg-accent text-black font-semibold":
+                        subMenu === menu.menuName,
+                    }
+                  )}
                   key={index}
                   onClick={() => selectedSubMenu(menu.menuName)}
                 >
                   {`• ${menu.menuName}`}
-                </SubMenu>
+                </span>
               ))}
-            </SubMenuWrapper>
+            </div>
           )}
-        </MenuWrapper>
+        </li>
       ))}
-    </List>
+    </ul>
   );
 }

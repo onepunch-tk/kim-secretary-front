@@ -1,45 +1,21 @@
-import styled from "styled-components";
-import { flexCenter, flexCenterCol } from "@styles/common/flex-box.ts";
 import { faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const AdsWrapper = styled(flexCenter)`
-  padding: 5px 15px;
-  width: 100%;
-  justify-content: start;
-  border: solid 2px ${({ theme }) => theme.colors.border};
-  border-radius: 10px;
-  cursor: pointer;
-`;
-const IconWrapper = styled(flexCenter)`
-  padding: 10px;
-  border-radius: 50%;
-  background-color: ${({ theme }) => theme.colors.accent.main};
-  color: ${({ theme }) => theme.colors.shadow};
-  margin-right: 10px;
-`;
-const ContentWrapper = styled(flexCenterCol)`
-  padding: 10px 0;
-  align-items: start;
-  h2 {
-    color: ${({ theme }) => theme.colors.accent.main};
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  span {
-    font-size: ${({ theme }) => theme.size.text.xs};
-  }
-`;
 export function Ads() {
   return (
-    <AdsWrapper>
-      <IconWrapper>
+    <div
+      id="ads-container"
+      className="flex cursor-pointer items-center justify-start rounded-xl border px-2 py-3.5"
+    >
+      <div className="mr-1.5 rounded-full bg-accent p-3 text-black">
         <FontAwesomeIcon icon={faShoppingBasket} size="lg" />
-      </IconWrapper>
-      <ContentWrapper>
-        <h2>김비서 스토어</h2>
-        <span>샵 재료 구매까지 한번에!</span>
-      </ContentWrapper>
-    </AdsWrapper>
+      </div>
+      <div className="flex flex-col items-start px-3 py-0">
+        <h2 className="mb-1.5 font-bold text-accent-secondary">
+          김비서 스토어
+        </h2>
+        <span className="text-xs">샵 재료 구매까지 한번에!</span>
+      </div>
+    </div>
   );
 }

@@ -1,7 +1,4 @@
-import styled from "styled-components";
-import { flexCenter, flexCenterCol } from "@styles/common/flex-box.ts";
 import { Profile } from "@components/ui/navbar/Profile.tsx";
-import { media } from "@styles/common/helper.ts";
 import { Fragment, useState } from "react";
 import { Menu } from "@components/ui/navbar/Menu.tsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,40 +7,7 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { Ads } from "@components/ui/navbar/Ads.tsx";
-
-const NavbarWrapper = styled(flexCenterCol)<{ $barVisible: boolean }>`
-  position: fixed;
-  left: 0;
-  top: 0;
-  padding: 8px;
-  width: 240px;
-  height: 100vh;
-  justify-content: space-between;
-  background-color: ${({ theme }) => theme.colors.section.main};
-  overflow-x: hidden;
-  ${media.tablet`
-  left:${({ $barVisible }: { $barVisible: boolean }) =>
-    $barVisible ? "0" : "-240px"};
-    `}
-  transition:left 300ms ease-in-out;
-`;
-
-const NavbarVisibleBtn = styled(flexCenter)<{ $barVisible: boolean }>`
-  visibility: hidden;
-  cursor: pointer;
-  position: fixed;
-  top: 20px;
-  left: ${(props) => (props.$barVisible ? "245px" : "20px")};
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  padding: 5px;
-  color: ${({ theme }) => theme.colors.shadow};
-  background-color: ${({ theme }) => theme.colors.accent.main};
-  box-shadow: 0.7px 0.5px 4px ${({ theme }) => theme.colors.shadow};
-  transition: left 300ms ease-in-out;
-  ${media.tablet`visibility:visible`}
-`;
+import { cls } from "@utils/helper.ts";
 
 const dummyProfileData = {
   shopName: "티케이 헤어",
@@ -56,17 +20,27 @@ export function Navbar() {
 
   return (
     <Fragment>
-      <NavbarWrapper $barVisible={visible}>
+      <nav
+        className={cls(
+          "fixed top-0 flex h-[100svh] w-60 flex-col justify-between overflow-y-scroll bg-section p-2 transition-[left] duration-300",
+          visible ? "left-0" : "-left-60",
+          "md:left-0 md:overflow-y-auto"
+        )}
+      >
         <Profile {...dummyProfileData} />
         <Menu />
         <Ads />
-      </NavbarWrapper>
-      <NavbarVisibleBtn
-        $barVisible={visible}
+      </nav>
+      <div
+        id="visible-btn"
+        className={cls(
+          "visible fixed left-5 top-5 h-5 w-5 cursor-pointer rounded-full p-1 text-black transition-[left] duration-300 md:invisible",
+          { "left-[245px]": visible }
+        )}
         onClick={() => setVisible((prev) => !prev)}
       >
         <FontAwesomeIcon icon={visible ? faChevronLeft : faChevronRight} />
-      </NavbarVisibleBtn>
+      </div>
     </Fragment>
   );
 }

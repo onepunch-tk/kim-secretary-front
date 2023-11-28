@@ -22,7 +22,6 @@ export function Home() {
   };
   return (
     <Fragment>
-      <div className="flex w-56 h-56 bg-primary"></div>
       <h1 className="text-3xl">{year}</h1>
       <h2 className="text-emerald-900">{month}</h2>
       {days.map((day) => (
