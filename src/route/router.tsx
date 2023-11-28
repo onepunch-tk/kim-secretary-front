@@ -5,11 +5,11 @@ import { Home } from "@views/Home.tsx";
 console.log(import.meta.env.PUBLIC_URL);
 export const router = createBrowserRouter([
   {
-    path: "https://onepunch-tk.github.io/kim-secretary-front",
+    path: "/",
     element: <Root />,
     children: [
       {
-        path: "home",
+        path: "/",
         element: <Home />,
       },
     ],
