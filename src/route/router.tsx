@@ -4,11 +4,11 @@ import { Home } from "@views/Home.tsx";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: import.meta.env.PUBLIC_URL,
     element: <Root />,
     children: [
       {
-        path: "/",
+        path: "home",
         element: <Home />,
       },
     ],
