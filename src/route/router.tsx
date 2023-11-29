@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Root } from "@/route/Root.tsx";
-import { Home } from "@views/Home.tsx";
+import { HomeScreen } from "@/pages/(logged-in)/HomeScreen.tsx";
 
 console.log();
 export const router = createBrowserRouter(
@@ -11,7 +11,7 @@ export const router = createBrowserRouter(
       children: [
         {
           path: "/",
-          element: <Home />,
+          element: <HomeScreen />,
         },
       ],
     },

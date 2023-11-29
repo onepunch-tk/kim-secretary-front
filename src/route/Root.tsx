@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 export function Root() {
   return (
-    <main className="flex flex-col items-center justify-center">
+    <main className="flex flex-col items-center justify-center xl:pl-60">
       <div>
         <SEO
           title="김비서 - home"
