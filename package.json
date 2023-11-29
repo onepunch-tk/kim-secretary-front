@@ -1,8 +1,8 @@
 {
   "name": "kim-secretary-front",
-  "homepage": "https://onepunch-tk.github.io/kim-secretary-front",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://onepunch-tk.github.io/kim-secretary-front",
   "type": "module",
   "scripts": {
     "dev": "vite",
