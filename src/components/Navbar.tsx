@@ -34,7 +34,7 @@ export function Navbar() {
       <div
         id="visible-btn"
         className={cls(
-          "visible fixed left-5 top-5 h-5 w-5 cursor-pointer rounded-full p-1 text-black transition-[left] duration-300 md:invisible",
+          "visible fixed left-5 top-5 h-5 iw-5 cursor-pointer rounded-full p-1 text-black transition-[left] duration-300 md:invisible",
           { "left-[245px]": visible }
         )}
         onClick={() => setVisible((prev) => !prev)}
