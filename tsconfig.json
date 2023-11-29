@@ -28,8 +28,9 @@
       "@api/*": ["./src/api/*"],
       "@route/*": ["./src/route/*"],
       "@styles/*": ["./src/styles/*"],
-      "@views/*": ["./src/views/*"],
-      "@types/*": ["./src/types/*"]
+      "@pages/*": ["./src/pages/*"],
+      "@types/*": ["./src/types/*"],
+      "@services/*": ["./src/services/*"]
     }
   },
   "include": ["src","tailwind.config.js","postcss.config.js"],

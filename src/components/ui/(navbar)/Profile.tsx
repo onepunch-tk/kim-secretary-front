@@ -1,6 +1,6 @@
-import { Shop } from "@components/ui/navbar/Shop.tsx";
-import { Owner } from "@components/ui/navbar/Owner.tsx";
-import { Message } from "@components/ui/navbar/Message.tsx";
+import { Shop } from "@components/ui/(navbar)/Shop.tsx";
+import { Owner } from "@components/ui/(navbar)/Owner.tsx";
+import { Message } from "@components/ui/(navbar)/Message.tsx";
 
 type ProfileProps = {
   shopName: string;

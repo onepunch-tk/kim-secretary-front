@@ -1,4 +1,4 @@
-import { MenuList } from "@components/ui/navbar/MenuList.tsx";
+import { MenuList } from "@components/ui/(navbar)/MenuList.tsx";
 
 export function Menu() {
   return (

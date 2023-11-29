@@ -2,12 +2,18 @@ export interface Day {
   dayNumber: number;
   dayName: string;
   isHoliday: boolean;
-  name?: string;
+  holiday?: string;
 }
 export interface Calendar {
-  year: string;
-  month: string;
+  year: number;
+  month: number;
   days: Day[];
+}
+
+export interface CalendarState {
+  prevDate?: Calendar;
+  currentDate: Calendar;
+  nextDate?: Calendar;
 }
 
 export interface CalendarAction {

@@ -1,4 +1,4 @@
-import { menuList, useMenuStore } from "@/zustand/stores/menu.ts";
+import { menuList, useMenuStore } from "@/services/state/stores/menu.ts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronDown,
