@@ -22,9 +22,9 @@ export function Navbar() {
     <Fragment>
       <nav
         className={cls(
-          "fixed top-0 z-50 flex h-[100svh] w-60 flex-col justify-between overflow-y-scroll bg-section p-2 shadow-lg transition-[left] duration-300",
+          "fixed top-0 z-50 flex h-screen w-60 flex-col justify-between overflow-y-scroll bg-section p-2 shadow-lg transition-[left] duration-300",
           visible ? "left-0" : "-left-60 shadow-none",
-          "xl:left-0 xl:overflow-y-auto"
+          "xl:left-0"
         )}
       >
         <Profile {...dummyProfileData} />
