@@ -11,7 +11,7 @@ export function Ads() {
         <FontAwesomeIcon icon={faShoppingBasket} className="md:text-xl" />
       </div>
       <div className="flex flex-col items-start py-0">
-        <h2 className="mb-0.5 text-xs font-bold text-accent-secondary  md:text-sm">
+        <h2 className="mb-0.5 text-xs font-bold text-accent-secondary md:text-sm">
           김비서 스토어
         </h2>
         <span className="text-[10px] md:text-xs">샵 재료 구매까지 한번에!</span>

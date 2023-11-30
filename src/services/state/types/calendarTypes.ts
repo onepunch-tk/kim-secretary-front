@@ -1,13 +1,20 @@
 export interface Day {
   dayNumber: number;
   dayName: string;
-  isHoliday: boolean;
+  isHoliday?: boolean;
   holiday?: string;
 }
+
+export type Role = "current" | "prev" | "next" | "day";
+
 export interface Calendar {
   year: number;
   month: number;
-  days: Day[];
+  day: {
+    role: Role;
+    date?: Date;
+    list: Day[];
+  };
 }
 
 export interface CalendarState {

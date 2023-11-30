@@ -1,15 +1,16 @@
 import { cls } from "@utils/helper";
-import { Day } from "@services/state/types/calendarTypes";
-import { DayWrapper } from "@components/ui/(calendar)/Day.tsx";
+import { Calendar, Role } from "@services/state/types/calendarTypes";
+import { DayWrapper } from "@components/ui/(calendar)/DayWrapper.tsx";
+import { memo } from "react";
 
 interface CalendarWrapperProps {
   className?: string;
-  days: Partial<Day>[];
+  calendars: Partial<Calendar>[];
   onlyName: boolean;
 }
-export function CalendarWrapper({
+export const CalendarWrapper = memo(function CalendarWrapper({
   className,
-  days,
+  calendars,
   onlyName,
 }: CalendarWrapperProps) {
   return (
@@ -19,17 +20,17 @@ export function CalendarWrapper({
         className
       )}
     >
-      {days.map((day, index) => (
-        <DayWrapper
-          key={index}
-          onlyName={onlyName}
-          {...day}
-          className={cls(
-            onlyName ? "cursor-default" : "mt-0.5 cursor-pointer shadow-sm"
-          )}
-          {...(!onlyName && { innerBorder: "visible" })}
-        />
-      ))}
+      {calendars.map((calendar) =>
+        calendar.day?.list.map((day, index) => (
+          <DayWrapper
+            key={index}
+            {...day}
+            onlyName={onlyName}
+            onClick={() => console.log(calendar.day?.date?.toISOString())}
+            role={calendar.day?.role as Role}
+          />
+        ))
+      )}
     </div>
   );
-}
+});
