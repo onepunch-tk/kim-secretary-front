@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export function Ads() {
   return (
-    <div
+    <section
       id="ads-container"
-      className="flex cursor-pointer items-center justify-start rounded-xl border px-2 py-3.5"
+      className="flex h-auto cursor-pointer items-center justify-start rounded-xl border px-2 py-3.5"
     >
       <div className="mr-1.5 rounded-full bg-accent p-3 text-black">
         <FontAwesomeIcon icon={faShoppingBasket} size="lg" />
@@ -16,6 +16,6 @@ export function Ads() {
         </h2>
         <span className="text-xs">샵 재료 구매까지 한번에!</span>
       </div>
-    </div>
+    </section>
   );
 }
