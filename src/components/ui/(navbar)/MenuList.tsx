@@ -9,25 +9,32 @@ import { cls } from "@utils/helper.ts";
 export function MenuList() {
   const { mainMenu, subMenu, selectedMainMenu, selectedSubMenu } =
     useMenuStore();
+
   return (
     <ul id="menu-list">
       {menuList.map((menu, index) => (
         <li
-          className="menu-item cursor-pointer"
+          className="menu-item mb-1 cursor-pointer md:mb-0"
           key={index}
           onClick={() => selectedMainMenu(menu.menuName)}
         >
           <div
             className={cls(
-              "main-menu flex items-center justify-between rounded-xl border-txt-primary px-3.5 py-2.5 transition-[background-color] duration-300 hover:bg-section-secondary",
+              "main-menu flex items-center justify-between rounded-xl border-txt-primary px-2.5 py-1 transition-[background-color] duration-300 hover:bg-section-secondary md:px-3.5 md:py-2.5",
               { "bg-section-secondary": mainMenu === menu.menuName }
             )}
           >
-            <div>
-              <FontAwesomeIcon icon={menu.icon} />
-              <span className="ml-2.5 font-semibold">{menu.menuName}</span>
+            <div className="flex items-center">
+              <FontAwesomeIcon
+                className="text-xs md:text-sm"
+                icon={menu.icon}
+              />
+              <span className="ml-2.5 text-xs font-semibold md:text-sm">
+                {menu.menuName}
+              </span>
             </div>
             <FontAwesomeIcon
+              className="text-xs md:text-sm"
               icon={mainMenu === menu.menuName ? faChevronDown : faChevronRight}
             />
           </div>
@@ -36,7 +43,7 @@ export function MenuList() {
               {menu.subMenu.map((menu, index) => (
                 <span
                   className={cls(
-                    "sub-menu mb-1 rounded-xl p-2.5 text-sm transition-[background-color,color] hover:bg-accent hover:text-black",
+                    "sub-menu mb-1 rounded-xl px-2.5 py-1 text-xs transition-[background-color,color] hover:bg-accent hover:text-black md:p-2.5 md:text-sm",
                     {
                       "bg-accent text-black font-semibold":
                         subMenu === menu.menuName,

@@ -22,7 +22,7 @@ export function Navbar() {
     <Fragment>
       <nav
         className={cls(
-          "fixed top-0 z-50 grid h-[100svh] max-h-[100svh] w-60 grid-rows-[auto,1fr,auto] overflow-y-auto bg-section p-2 shadow-lg transition-[left] duration-300",
+          "fixed top-0 z-50 grid h-[100dvh] max-h-[100dvh] w-60 grid-rows-[auto,1fr,auto] overflow-y-auto bg-section p-4 shadow-lg transition-[left] duration-300",
           visible ? "left-0" : "-left-60 shadow-none",
           "xl:left-0 xl:overflow-y-hidden"
         )}
