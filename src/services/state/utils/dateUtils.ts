@@ -14,6 +14,7 @@ export const getCurrentDays = (selectedDate: Date): Day[] => {
   const dateOffset = 1;
   const days: Day[] = [];
   while (selectedDate.getMonth() === conditionDate.getMonth()) {
+    console.log("conditionDate:", conditionDate, "selectedDate:", selectedDate);
     days.push(getDay(conditionDate));
     conditionDate.setDate(conditionDate.getDate() + dateOffset);
   }

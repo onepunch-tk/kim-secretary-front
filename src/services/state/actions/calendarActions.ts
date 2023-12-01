@@ -3,8 +3,8 @@ import {
   getCurrentDays,
   getNextDate,
   getPrevDate,
-} from "@/services/state/utils/dateUtils.ts";
-import { CalendarState } from "@/services/state/types/calendarTypes.ts";
+} from "@/services/state/utils/dateUtils";
+import { CalendarState } from "@/services/state/types/calendarTypes";
 
 export const selectedCalendar = (selectedDate: Date): CalendarState => {
   const prevDate = getPrevDate(selectedDate);
