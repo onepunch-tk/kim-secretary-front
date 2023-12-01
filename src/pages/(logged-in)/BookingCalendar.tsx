@@ -29,15 +29,21 @@ const dayOfWeeks: Partial<Calendar>[] = [
 export function BookingCalendar() {
   const { currentDate, prevDate, nextDate, selectedCalendar } = useCalendar();
   const changeCalendarHandle = (role: "prev" | "next") => {
-    const dateOffset = 1;
+    const dateParts = currentDate.date.split(".");
+    if (
+      dateParts.length !== 2 ||
+      isNaN(+dateParts[0]) ||
+      isNaN(+dateParts[1])
+    ) {
+      console.error("Invalid date format");
+      return;
+    }
 
-    const updateDate = new Date(currentDate.date);
-    updateDate.setMonth(
-      role === "prev"
-        ? updateDate.getMonth() - dateOffset
-        : updateDate.getMonth() + dateOffset
-    );
+    const year = parseInt(dateParts[0]);
+    const month = parseInt(dateParts[1]) - 1; // 월은 0부터 시작하므로 1을 빼줌
 
+    const updateDate = new Date(year, month, 1); // 날짜 객체 생성
+    updateDate.setMonth(updateDate.getMonth() + (role === "prev" ? -1 : 1));
     selectedCalendar(updateDate);
   };
 
