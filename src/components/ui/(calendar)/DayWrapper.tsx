@@ -15,10 +15,15 @@ const dayVariants = tv({
       full: "h-20 xl:h-44 ",
       onlyName: "h-auto",
     },
-    text: {
+    textSize: {
       default: "text-[0.55rem] md:text-xs xl:text-lg xl:font-semibold",
-      opacity30:
-        "text-[0.55rem] md:text-xs xl:text-lg xl:font-semibold text-white/30",
+      holiday: "text-[0.65rem]",
+    },
+    textColor: {
+      default: "text-txt-primary",
+      notCurrentMonth: "text-white/30",
+      holidayCurrentMonth: "text-dangerous",
+      holidayNotCurrentMonth: "text-red-500/30",
     },
     innerBorder: {
       visible: "hover:border hover:border-dashed hover:border-accent-secondary",
@@ -38,7 +43,6 @@ export function DayWrapper(
     dayNumber,
     holiday,
     isHoliday,
-    innerBorder,
     onClick,
   } = props;
   return (
@@ -50,29 +54,60 @@ export function DayWrapper(
         { "bg-background": role === "current" || role === "day" },
         dayVariants({
           contentsHeight: onlyName ? "onlyName" : "full",
-          text: role === "current" || role === "day" ? "default" : "opacity30",
-          ...(!onlyName && { innerBorder: "visible" }),
         })
       )}
     >
       <div className="h-full p-1">
         <div
-          className={cls("h-full rounded-md p-1", dayVariants({ innerBorder }))}
+          className={cls(
+            "h-full rounded-md p-1",
+            dayVariants({ innerBorder: "visible" })
+          )}
         >
-          <div className="flex justify-end">
+          <div className="flex w-full items-center justify-between">
+            <span
+              className={cls(
+                {
+                  "block invisible md:visible h-auto rounded-md bg-confirm px-1.5 text-center truncate":
+                    isHoliday && !(role === "day"),
+                },
+                dayVariants({
+                  textSize: "holiday",
+                })
+              )}
+            >
+              {holiday}
+            </span>
             {onlyName ? (
               <span
-                className={cls({
-                  "text-dangerous": isHoliday,
-                })}
+                className={cls(
+                  dayVariants({
+                    textSize: "default",
+                    textColor: isHoliday ? "holidayCurrentMonth" : "default",
+                  })
+                )}
               >
                 {dayName}
               </span>
             ) : (
-              <span>{dayNumber}</span>
+              <span
+                className={cls(
+                  dayVariants({
+                    textSize: "default",
+                    textColor: !isHoliday
+                      ? role === "current"
+                        ? "default"
+                        : "notCurrentMonth"
+                      : role === "current"
+                      ? "holidayCurrentMonth"
+                      : "holidayNotCurrentMonth",
+                  })
+                )}
+              >
+                {dayNumber}
+              </span>
             )}
           </div>
-          {isHoliday ? <span>{holiday}</span> : null}
         </div>
       </div>
     </article>

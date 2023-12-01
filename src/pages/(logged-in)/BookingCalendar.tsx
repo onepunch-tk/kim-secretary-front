@@ -1,7 +1,6 @@
 import { CalendarWrapper } from "@components/ui/(calendar)/CalendarWrapper.tsx";
 import { Calendar } from "@services/state/types/calendarTypes";
 import { useCalendar } from "@services/state/stores/useCalendar.ts";
-import { months } from "@services/state/utils/dateUtils.ts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
@@ -28,39 +27,18 @@ const dayOfWeeks: Partial<Calendar>[] = [
 ];
 
 export function BookingCalendar() {
-  const { currentDate, prevDate, selectedCalendar } = useCalendar();
+  const { currentDate, prevDate, nextDate, selectedCalendar } = useCalendar();
   const changeCalendarHandle = (role: "prev" | "next") => {
-    const january = months[0];
-    const december = months[months.length - 1];
     const dateOffset = 1;
-    let updateDate: { year: number; month: number } = {
-      year: 0,
-      month: 0,
-    };
-    if (role === "prev") {
-      /*전 월로 이동할때.*/
-      updateDate =
-        currentDate.month === january /*현재 1월이라면...*/
-          ? /*한 해 전으로 이동...*/
-            { year: currentDate.year - dateOffset, month: december }
-          : /*년은 그대로 두고 월만 전 월로...*/
-            {
-              year: currentDate.year,
-              month: currentDate.month - dateOffset,
-            };
-    } else {
-      /*다음 월로 이동할때*/
-      updateDate =
-        currentDate.month === december /*현재 12월이면...*/
-          ? /*한해를 넘긴다.*/
-            { year: currentDate.year + dateOffset, month: january }
-          : /* 년은 그대로 두고, 월만 다음 월로./. */
-            {
-              year: currentDate.year,
-              month: currentDate.month + dateOffset,
-            };
-    }
-    selectedCalendar(updateDate.year, updateDate.month);
+
+    const updateDate = new Date(currentDate.date);
+    updateDate.setMonth(
+      role === "prev"
+        ? updateDate.getMonth() - dateOffset
+        : updateDate.getMonth() + dateOffset
+    );
+
+    selectedCalendar(updateDate);
   };
 
   const button = tv({
@@ -76,7 +54,7 @@ export function BookingCalendar() {
           onClick={() => changeCalendarHandle("prev")}
         />
         <h3 className="font-semibold tracking-widest xl:text-2xl">
-          {`${currentDate.year}.${currentDate.month}`}
+          {`${currentDate.date}`}
         </h3>
         <FontAwesomeIcon
           className={cls(button())}
@@ -93,6 +71,7 @@ export function BookingCalendar() {
         calendars={[
           prevDate ? { ...prevDate } : ({} as Partial<Calendar>),
           currentDate,
+          nextDate ? { ...nextDate } : ({} as Partial<Calendar>),
         ]}
         onlyName={false}
         className="rounded-lg shadow-sm"

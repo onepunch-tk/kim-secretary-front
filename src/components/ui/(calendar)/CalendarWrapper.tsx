@@ -26,7 +26,7 @@ export const CalendarWrapper = memo(function CalendarWrapper({
             key={index}
             {...day}
             onlyName={onlyName}
-            onClick={() => console.log(calendar.day?.date?.toISOString())}
+            onClick={() => console.log(calendar.date)}
             role={calendar.day?.role as Role}
           />
         ))

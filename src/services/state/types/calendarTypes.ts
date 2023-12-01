@@ -8,11 +8,9 @@ export interface Day {
 export type Role = "current" | "prev" | "next" | "day";
 
 export interface Calendar {
-  year: number;
-  month: number;
+  date: string;
   day: {
     role: Role;
-    date?: Date;
     list: Day[];
   };
 }
@@ -24,5 +22,5 @@ export interface CalendarState {
 }
 
 export interface CalendarAction {
-  selectedCalendar: (year: number, month: number) => void;
+  selectedCalendar: (selectedDate: Date) => void;
 }

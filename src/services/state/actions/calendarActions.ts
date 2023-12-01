@@ -1,24 +1,26 @@
 import {
+  dateFormat,
   getCurrentDays,
+  getNextDate,
   getPrevDate,
 } from "@/services/state/utils/dateUtils.ts";
 import { CalendarState } from "@/services/state/types/calendarTypes.ts";
 
-export const selectedCalendar = (
-  year: number,
-  month: number
-): CalendarState => {
-  const prevDate = getPrevDate(year, month);
+export const selectedCalendar = (selectedDate: Date): CalendarState => {
+  const prevDate = getPrevDate(selectedDate);
+  const currentDayList = getCurrentDays(selectedDate);
+  const totalDays =
+    (prevDate ? prevDate.day.list.length : 0) + currentDayList.length;
+  const nextDate = getNextDate(selectedDate, totalDays);
   return {
     prevDate,
     currentDate: {
-      year,
-      month,
+      date: dateFormat(selectedDate),
       day: {
         role: "current",
-        date: new Date(year, month, 1),
-        list: getCurrentDays(year, month),
+        list: currentDayList,
       },
     },
+    nextDate,
   };
 };
